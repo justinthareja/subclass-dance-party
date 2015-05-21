@@ -24,6 +24,7 @@ SpinningLine.prototype.makeSmaller = function () {
 };
 
 SpinningLine.prototype.rotateRight = function () {
+  this.$node.removeClass("rotate-left");
   this.$node.addClass("rotate-right");
 };
 

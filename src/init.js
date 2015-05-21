@@ -1,20 +1,7 @@
 $(document).ready(function(){
   window.lines = [];
-  window.colors = ['#00FFFF', '#9933FF', '#3366FF', '#6600CC', '#FF33CC', '#CC0000', '#FFFF00', '#FF3300', '#FF0009', '#56600FF', '#39FF14'];
+  window.colors = ['#9933FF', '#3366FF', '#6600CC', '#FF33CC', '#CC0000', '#FFFF00', '#FF3300', '#FF0009', '#56600FF', '#39FF14'];
 
-  var shuffle = function(array) {
-    var shuffle = [];
-
-    array.forEach(function(item) {
-      shuffle.splice(Math.random(0, shuffle.length), 0, item);
-    });
-
-    if(shuffle === array) {
-      shuffle(shuffle);
-    };
-
-    return shuffle;
-  };
 
   $(".addDancerButton").on("click", function(event){
     /* This function sets up the click handlers for the create-dancer
@@ -83,25 +70,26 @@ $(document).ready(function(){
   });
 
   $('.groupColors').on("click", function (event){
-    var colors = shuffle(window.colors);
+    var shuffleColors = _.shuffle(window.colors);
+    console.log(shuffleColors);
     var height = $(".partyScreen").height();
     var width = $(".partyScreen").width();
 
 
     for (var i=0; i<lines.length; i++) {
       if (lines[i].top < height/2 && lines[i].left < width/2) {
-        lines[i].setColor(colors[0]);
+        lines[i].setColor(shuffleColors[0]);
       }
       else if (lines[i].top > height/2 && lines[i].left < width/2) {
-        lines[i].setColor(colors[1]);
+        lines[i].setColor(shuffleColors[1]);
       }
 
       else if (lines[i].top < height/2 && lines[i].left > width/2) {
-        lines[i].setColor(colors[2]);
+        lines[i].setColor(shuffleColors[2]);
       }
 
       else {
-        lines[i].setColor(colors[3]);
+        lines[i].setColor(shuffleColors[3]);
       }
     }
   });
@@ -118,7 +106,7 @@ $(document).ready(function(){
         lines[index1].setColor(temp);
       }
 
-      while (numSwaps < 100000) {
+      while (numSwaps < 1000000) {
         numSwaps++;
         setTimeout(swap, 1000);
       }
@@ -127,5 +115,19 @@ $(document).ready(function(){
     swap();
 
   });
+
+  $(".rotateRight").on("click", function (event) {
+    for (var i = 0; i < lines.length; i++) {
+      lines[i].rotateRight();
+    }
+  });
+
+  $(".lineUp").on("click", function (event) {
+    for (var i = 0; i < lines.length; i++) {
+      lines[i].lineUp(i);
+    }
+  });
 });
+
+
 

@@ -38,22 +38,22 @@ var Line = function(top, left) {
   this.$node = $('<span class="line"></span>');
   this.top = top;
   this.left = left;
-  this.setLine();
+  this.setLine(top, left);
   this.generateColor();
 };
 
 Line.prototype.generateColor = function () {
-  var colors = ['#00FFFF', '#9933FF', '#3366FF', '#6600CC', '#FF33CC', '#CC0000', '#FFFF00', '#FF3300', '#FF0009', '#56600FF', '#39FF14'];
+  var colors = window.colors;
   var randomColor = Math.floor(Math.random() * colors.length);
   var colorStyle = {"background-color": colors[randomColor]};
   this.color = colors[randomColor];
   this.$node.css(colorStyle);
 };
 
-Line.prototype.setLine = function() {
+Line.prototype.setLine = function(top, left) {
   var styleSettings = {
-      top: this.top,
-      left: this.left
+      top: top,
+      left: left
   };
   this.$node.css(styleSettings);
 };
@@ -66,6 +66,37 @@ Line.prototype.setColor = function(color) {
 
 Line.prototype.getDistance = function(line1, line2) {
   return Math.sqrt((line1.top - line2.top)*(line1.top-line2.top) + (line1.left - line2.left) * (line1.left - line2.left));
+};
+
+Line.prototype.lineUp  = function (angle) {
+  var $container = $(".partyScreen"),
+      radius = $container.height() / 2,
+      width = $container.height() / 2,
+      height = $container.height(),
+
+      x = Math.round(width/2 + radius * Math.cos(angle)),
+      y = Math.round(height/2 + radius * Math.sin(angle));
+
+  this.setLine(y , x);
+};
+
+function distributeFields() {
+    var radius = 200;
+    var fields = $('.field'), container = $('#container'),
+        width = container.width(), height = container.height(),
+        angle = 0, step = (2*Math.PI) / fields.length;
+    fields.each(function() {
+        var x = Math.round(width/2 + radius * Math.cos(angle) - $(this).width()/2);
+        var y = Math.round(height/2 + radius * Math.sin(angle) - $(this).height()/2);
+        if(window.console) {
+            console.log($(this).text(), x, y);
+        }
+        $(this).css({
+            left: x + 'px',
+            top: y + 'px'
+        });
+        angle += step;
+    });
 }
 
 
