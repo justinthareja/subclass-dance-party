@@ -36,7 +36,7 @@ body, a:link, a:visited, a:active{
 }
 
 .rotate-right {
-    -webkit-animation: rotate-right 2s linear infinite;
+    -webkit-animation: rotate-right 1s linear infinite;
 }
 
 @-webkit-keyframes rotate-left {
@@ -49,5 +49,5 @@ body, a:link, a:visited, a:active{
 }
 
 .rotate-left {
-    -webkit-animation: rotate-left 2s linear infinite;
+    -webkit-animation: rotate-left 1s linear infinite;
 }

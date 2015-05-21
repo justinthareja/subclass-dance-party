@@ -34,20 +34,25 @@ var makeDancer = function(top, left, timeBetweenSteps){
 };
 */
 
-var Line = function(top, left, color) {
+var Line = function(top, left) {
   this.$node = $('<span class="line"></span>');
   this.top = top;
   this.left = left;
-  this.color = color;
   this.setLine();
+  this.generateColor();
 };
 
+Line.prototype.generateColor = function () {
+  var colors = ['#00FFFF', '#9933FF', '#3366FF', '#6600CC', '#FF33CC', '#CC0000'];
+  var randomColor = Math.floor(Math.random() * colors.length);
+  var colorStyle = {"background-color": colors[randomColor]};
+  this.$node.css(colorStyle);
+};
 
 Line.prototype.setLine = function() {
   var styleSettings = {
       top: this.top,
-      left: this.left,
-      "background-color": this.color
+      left: this.left
   };
   this.$node.css(styleSettings);
 };

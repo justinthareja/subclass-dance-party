@@ -1,5 +1,5 @@
-var SpinningLine = function (top, left, color) {
-  Line.call(this, top, left, color);
+var SpinningLine = function (top, left) {
+  Line.call(this, top, left);
   this.rotateRight(); // initialize with a right spin
 };
 
@@ -32,5 +32,6 @@ SpinningLine.prototype.rotateLeft = function () {
   this.$node.addClass("rotate-left");
 };
 
-
-
+SpinningLine.prototype.disableSpin = function () {
+  this.$node.removeClass("rotate-right rotate-left");
+};
