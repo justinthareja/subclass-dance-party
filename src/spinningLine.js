@@ -1,6 +1,7 @@
 var SpinningLine = function (top, left) {
   Line.call(this, top, left);
-  this.rotateRight(); // initialize with a right spin
+  var number = Math.floor(Math.random()*10);
+  number % 2 === 0 ? this.rotateRight() : this.rotateLeft();
 };
 
 SpinningLine.prototype = Object.create(Line.prototype);
@@ -23,7 +24,6 @@ SpinningLine.prototype.makeSmaller = function () {
 };
 
 SpinningLine.prototype.rotateRight = function () {
-  this.$node.removeClass("rotate-left");
   this.$node.addClass("rotate-right");
 };
 
@@ -33,7 +33,6 @@ SpinningLine.prototype.swapDirection = function() {
 }
 
 SpinningLine.prototype.rotateLeft = function () {
-  this.$node.removeClass("rotate-right");
   this.$node.addClass("rotate-left");
 };
 

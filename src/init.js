@@ -1,6 +1,6 @@
 $(document).ready(function(){
   window.lines = [];
-  window.colors = ['#00FFFF', '#9933FF', '#3366FF', '#6600CC', '#FF33CC', '#CC0000'];
+  window.colors = ['#00FFFF', '#9933FF', '#3366FF', '#6600CC', '#FF33CC', '#CC0000', '#FFFF00', '#FF3300', '#FF0009', '#56600FF', '#39FF14'];
 
   var shuffle = function(array) {
     var shuffle = [];
@@ -61,15 +61,14 @@ $(document).ready(function(){
     var addObject = function () {
       var line = new window.SpinningLine (
         $(".partyScreen").height() * Math.random(),
-        $(".partyScreen").width() * Math.random()
-        );
+        $(".partyScreen").width() * Math.random());
 
       window.lines.push(line);
       $('.partyScreen').append(line.$node);
 
-      while (numLines < 1000) {
+      while (numLines < 300) {
         numLines++;
-        setTimeout(addObject, 50);
+        setTimeout(addObject, 30);
       }
     };
 
@@ -108,16 +107,25 @@ $(document).ready(function(){
   });
 
   $(".swapColors").on("click", function (event){
+    var numSwaps = 0;
+    var swap = function () {
+      var index1 = Math.floor(Math.random() * lines.length);
+      var index2 = Math.floor(Math.random() * lines.length);
 
-    for(var i = 0; i < lines.length; i++) {
-      for(var j = 0; j < lines.length; j++) {
-        if(window.Line.prototype.getDistance(lines[i], lines[j]) < 100) {
-          var temp = lines[j].color;
-          lines[j].setColor(lines[i].color);
-          lines[i].setColor(temp);
-        }
+      if (Line.prototype.getDistance(lines[index1],lines[index2]) < 250) {
+        var temp = lines[index2].color;
+        lines[index2].setColor(lines[index1].color);
+        lines[index1].setColor(temp);
       }
-    }
+
+      while (numSwaps < 100000) {
+        numSwaps++;
+        setTimeout(swap, 1000);
+      }
+    };
+
+    swap();
+
   });
 });
 

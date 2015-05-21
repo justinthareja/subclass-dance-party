@@ -43,7 +43,7 @@ var Line = function(top, left) {
 };
 
 Line.prototype.generateColor = function () {
-  var colors = ['#00FFFF', '#9933FF', '#3366FF', '#6600CC', '#FF33CC', '#CC0000'];
+  var colors = ['#00FFFF', '#9933FF', '#3366FF', '#6600CC', '#FF33CC', '#CC0000', '#FFFF00', '#FF3300', '#FF0009', '#56600FF', '#39FF14'];
   var randomColor = Math.floor(Math.random() * colors.length);
   var colorStyle = {"background-color": colors[randomColor]};
   this.color = colors[randomColor];
