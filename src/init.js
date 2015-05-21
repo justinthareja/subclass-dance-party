@@ -127,6 +127,12 @@ $(document).ready(function(){
       lines[i].lineUp(i);
     }
   });
+
+  $(".scatter").on("click", function(event){
+    for(var i = 0; i < lines.length; i++) {
+      lines[i].scatter();
+    }
+  });
 });
 
 

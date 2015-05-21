@@ -88,6 +88,13 @@ Line.prototype.lineUp  = function (angle) {
   this.animate(y, x, 2500);
 };
 
+Line.prototype.scatter = function() {
+  var y = Math.random() * $(".partyScreen").height();
+  var x = Math.random() * $(".partyScreen").width();
+
+  this.animate(y, x, 3000);
+};
+
 
 
 
