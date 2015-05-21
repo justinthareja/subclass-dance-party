@@ -53,7 +53,7 @@ $(document).ready(function(){
       window.lines.push(line);
       $('.partyScreen').append(line.$node);
 
-      while (numLines < 300) {
+      while (numLines < 360) {
         numLines++;
         setTimeout(addObject, 30);
       }
