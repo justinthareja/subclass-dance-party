@@ -46,6 +46,7 @@ Line.prototype.generateColor = function () {
   var colors = ['#00FFFF', '#9933FF', '#3366FF', '#6600CC', '#FF33CC', '#CC0000'];
   var randomColor = Math.floor(Math.random() * colors.length);
   var colorStyle = {"background-color": colors[randomColor]};
+  this.color = colors[randomColor];
   this.$node.css(colorStyle);
 };
 
@@ -56,3 +57,23 @@ Line.prototype.setLine = function() {
   };
   this.$node.css(styleSettings);
 };
+
+Line.prototype.setColor = function(color) {
+  this.color = color;
+  var colorStyle = {"background-color":color};
+  this.$node.css(colorStyle);
+};
+
+Line.prototype.getDistance = function(line1, line2) {
+  return Math.sqrt((line1.top - line2.top)*(line1.top-line2.top) + (line1.left - line2.left) * (line1.left - line2.left));
+}
+
+
+
+
+
+
+
+
+
+
