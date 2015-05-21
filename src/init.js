@@ -38,8 +38,8 @@ $(document).ready(function(){
     // make a line with a random position and color
     var randomColor = Math.floor(Math.random() * colors.length);
     var dancer = new dancerMakerFunction(
-      $("body").height() * Math.random(),
-      $("body").width() * Math.random(),
+      $(".partyScreen").height() * Math.random(),
+      $(".partyScreen").width() * Math.random(),
       colors[randomColor]
     );
 
@@ -47,13 +47,46 @@ $(document).ready(function(){
 
     window.lines.push(dancer);
 
-    $('body').append(dancer.$node);
+    $('.partyScreen').append(dancer.$node);
+
+    $(".line").mouseover(function() {
+      $(this).toggleClass('rotate-right');
+      $(this).toggleClass('rotate-left');
+    });
+
+  });
+
+  $('.fillScreen').on("click", function(event) {
+    var numLines = 0;
+    var addObject = function () {
+      var line = new window.SpinningLine (
+        $(".partyScreen").height() * Math.random(),
+        $(".partyScreen").width() * Math.random()
+        );
+
+      window.lines.push(line);
+      $('.partyScreen').append(line.$node);
+
+      while (numLines < 1000) {
+        numLines++;
+        setTimeout(addObject, 50);
+      }
+    };
+
+    addObject();
+  });
+
+
+  $(".swapRotation").on("click",function(event) {
+    for (var i =0; i < lines.length; i++) {
+      lines[i].swapDirection();
+    }
   });
 
   $('.groupColors').on("click", function (event){
     var colors = shuffle(window.colors);
-    var height = $("body").height();
-    var width = $("body").width();
+    var height = $(".partyScreen").height();
+    var width = $(".partyScreen").width();
 
 
     for (var i=0; i<lines.length; i++) {
@@ -74,6 +107,17 @@ $(document).ready(function(){
     }
   });
 
-  $(".swapColors").on("click", function ())
+  $(".swapColors").on("click", function (event){
+
+    for(var i = 0; i < lines.length; i++) {
+      for(var j = 0; j < lines.length; j++) {
+        if(window.Line.prototype.getDistance(lines[i], lines[j]) < 100) {
+          var temp = lines[j].color;
+          lines[j].setColor(lines[i].color);
+          lines[i].setColor(temp);
+        }
+      }
+    }
+  });
 });
 

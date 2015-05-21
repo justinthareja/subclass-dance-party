@@ -27,6 +27,11 @@ SpinningLine.prototype.rotateRight = function () {
   this.$node.addClass("rotate-right");
 };
 
+SpinningLine.prototype.swapDirection = function() {
+  this.$node.toggleClass("rotate-left");
+  this.$node.toggleClass("rotate-right");
+}
+
 SpinningLine.prototype.rotateLeft = function () {
   this.$node.removeClass("rotate-right");
   this.$node.addClass("rotate-left");

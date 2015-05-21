@@ -1,7 +1,8 @@
-body, html{
+body, html, .partyScreen {
   height:100%;
 }
 body{
+  background-color: #000;
   margin: 0px;
   font-size: 18px;
 }
@@ -21,8 +22,8 @@ body, a:link, a:visited, a:active{
 }
 .line{
   background-color:#000;
-  height: 1%;
-  width: 10%;
+  height: 5px;
+  width: 100px;
   position:absolute;
 }
 
@@ -36,7 +37,7 @@ body, a:link, a:visited, a:active{
 }
 
 .rotate-right {
-    -webkit-animation: rotate-right 1s linear infinite;
+    -webkit-animation: rotate-right 3s linear infinite;
 }
 
 @-webkit-keyframes rotate-left {
@@ -49,5 +50,5 @@ body, a:link, a:visited, a:active{
 }
 
 .rotate-left {
-    -webkit-animation: rotate-left 1s linear infinite;
+    -webkit-animation: rotate-left 3s linear infinite;
 }
