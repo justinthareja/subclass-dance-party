@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  window.dancers = [];
+  window.lines = [];
 
   $(".addDancerButton").on("click", function(event){
     /* This function sets up the click handlers for the create-dancer
@@ -20,17 +20,18 @@ $(document).ready(function(){
     // get the maker function for the kind of dancer we're supposed to make
     var dancerMakerFunction = window[dancerMakerFunctionName];
 
-    // make a dancer with a random position
-
+    // make a line with a random position and color
+    var colors = ['#00FFFF', '#9933FF', '#3366FF', '#6600CC', '#FF33CC', '#CC0000'];
+    var randomColor = Math.floor(Math.random() * colors.length);
     var dancer = new dancerMakerFunction(
       $("body").height() * Math.random(),
       $("body").width() * Math.random(),
-      Math.random() * 1000
+      colors[randomColor]
     );
 
-    $(".rotate-right").on("click", this.rotateLeft);
 
-    window.dancers.push(dancer);
+
+    window.lines.push(dancer);
 
     $('body').append(dancer.$node);
   });
